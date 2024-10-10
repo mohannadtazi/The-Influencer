@@ -1,6 +1,6 @@
 from crewai import Task
 from tools import tool
-from agent import researcher, writer
+from agent import researcher, writer, designer
 
 # Define the research task first
 research_task = Task(
@@ -16,4 +16,11 @@ write_task = Task(
     expected_output="A 4 paragraph article following the {style} style, and {length} length [keep in mind short means 5 lines] adapted for {platform} platform formatted as markdown.",
     agent=writer,
     async_execution=False
+)
+
+# Then define the Design task
+design_task = Task(
+    description="""Craft a prompt to genarte a visually appealing image in the {style} style to accompany the article. The image should capture the essence of the article about {topic} and be suitable for {platform} platform.""",
+    expected_output="A really short prompt to generate visually appealing image that captures the essence of the article and is suitable for {platform} platform. Don't include any text exept the prompt.",
+    agent=designer,
 )
