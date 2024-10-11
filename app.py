@@ -14,7 +14,7 @@ image_prompt = ''
 with st.sidebar:
     st.write('## Settings')
     st.write('Select the model you want to use:')
-    agent.model = st.selectbox('Model', ["groq/llama3-8b-8192", "groq/llama3-70b-8192","groq/llama-3.1-8b-instant"], index=0)
+    agent.model = st.selectbox('Model', ["llama3-8b-8192", "llama3-70b-8192","llama-3.1-8b-instant"], index=0)
     st.write('Select the creativity level:')
     agent.temperature = st.slider('Temperature', 0.0, 0.5, 1.0)
 
@@ -34,6 +34,8 @@ with col1:
             st.error("Please provide both a topic and a style.")
         else:
             try:
+                # Initialize the agent with selected model and temperature
+                agent.initialize_agent(agent.model, agent.temperature)
                 results = crew.kickoff({"topic": topic, "style": style, "length": length, "platform": platform})
                 if isImage:
                     image_prompt = crew_image.kickoff({"topic": topic, "style": style, "platform": platform})
