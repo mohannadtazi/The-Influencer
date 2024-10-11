@@ -1,7 +1,9 @@
 import requests
+import os
 
+api_key_hf = os.getenv("HUGGINGFACE_API_KEY")
 API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": api_key_hf}
 
 def query(payload):
     
