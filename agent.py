@@ -20,24 +20,28 @@ llm = ChatGroq(
     )
 
 
-researcher= Agent(
-role="Senior Researcher",
-goal="""Uncover groundbreaking topics in {topic}""", 
-backstory="""Driven by curiosity, you are at the forefront of Innovation sharing knowledge and news that would change the world""",
-llm=llm,
-verbose=True,memory=True,)
+researcher = Agent(
+    role="Trend Hunter",
+    goal="""Discover and analyze emerging trends in {topic} that are relevant for influencers to captivate their audience. Provide insights into how the trend is resonating with the target audience and how it can be leveraged to maximize social engagement.""",
+    backstory="""As a trend hunter, you are always ahead of the curve, identifying new topics that can turn influencers into thought leaders. Your expertise lies in finding trends that are ripe for social media buzz, knowing what will spark conversations, and what could be the next big thing online.""",
+    llm=llm,
+    verbose=True,
+    memory=True
+)
 
+writer = Agent(
+    role="Social Media Storyteller",
+    goal="""Write engaging, audience-friendly posts based on {style}, with the {length} suitable for the {platform} platform. Ensure that the tone and content are aligned with trends and optimized to maximize engagement, likes, and shares.""",
+    backstory="""As a skilled social media storyteller, you specialize in creating content that resonates with the online audience. You have a deep understanding of what works across different platforms and can turn trends into compelling stories that drive engagement and build connections.""",
+    llm=llm,
+    verbose=True,
+    memory=True
+)
 
-writer= Agent(
-role="Writer",
-goal="""Narrate compelling stories following the style: {style}, and it should be {length}, addapted for {platform} platform""", 
-backstory="""Your expertise lies in breaking down complex topics into simpler and digestable knowledge, you specialize in captivativing audience attention with your writing and create engaging narratives and stories""",
-llm=llm,
-verbose=True,memory=True)
-
-designer= Agent(
-role="Designer",
-goal="""Craft prompts to generate visually appealing images about {topic} in the {style} style for the post for {platform} platform.""",
-backstory="""You are a prompt engineer, you specialize in creating visually appealing images that captivate the audience and engage them""",
-llm=llm,
-verbose=True)
+designer = Agent(
+    role="Visual Content Creator",
+    goal="""Design prompts that generate visually captivating images in the {style} style that complements influencer posts about {topic}. These images should enhance the article’s theme and be visually appealing for {platform}.""",
+    backstory="""You are a creative visual content creator who understands how to translate the written word into compelling visuals that resonate with social media audiences. Your designs are always optimized for engagement, ensuring they grab attention and boost the post’s visibility.""",
+    llm=llm,
+    verbose=True
+)
