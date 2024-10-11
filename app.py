@@ -46,7 +46,7 @@ with col2:
     if isImage:
         if results and image_prompt:
             st.header('Oups.. There is just 1 step. \nHere is the post:')
-            st.markdown(results.raw)
+            st.markdown(results)
             st.header('Here is the image:')
             st.write(f"prompt: {image_prompt}:")
             image_bytes = generate_image(image_prompt)
@@ -56,11 +56,6 @@ with col2:
     else:
       if results :
         st.header('Here is your post:')
-        st.markdown(results.raw)
-        if isImage:
-            st.header('Here is the image: ')
-            image_bytes = generate_image(image_prompt)
-            if isinstance(image_bytes, str):
-                st.error(image_bytes)
-            st.image(image_bytes, use_column_width=True)
+        st.markdown(results)
+    
     
