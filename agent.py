@@ -16,7 +16,7 @@ temperature=0.0
 llm = ChatGroq(
         model=model,
         api_key=api_key,
-        temperature=selected_temperature
+        temperature=temperature
     )
 
 
