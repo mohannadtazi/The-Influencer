@@ -34,8 +34,7 @@ with col1:
             st.error("Please provide both a topic and a style.")
         else:
             try:
-                # Initialize the agent with selected model and temperature
-                agent.initialize_agent(agent.model, agent.temperature)
+                
                 results = crew.kickoff({"topic": topic, "style": style, "length": length, "platform": platform})
                 if isImage:
                     image_prompt = crew_image.kickoff({"topic": topic, "style": style, "platform": platform})
