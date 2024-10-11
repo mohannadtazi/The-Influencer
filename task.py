@@ -2,25 +2,26 @@ from crewai import Task
 from tools import tool
 from agent import researcher, writer, designer
 
-# Define the research task first
+# Task for discovering the next big trend
 research_task = Task(
-    description="""Identify the next big trend in {topic}. Focus on identifying pros and cons and the overall narrative. Your final report should clearly articulate the key points, its market opportunities, and potential risks.""",
-    expected_output="A comprehensive 3 paragraphs long report on the latest AI trends.",
+    description="""Identify the emerging trend within {topic} that would be highly relevant for social media influencers. Focus on key talking points, benefits, and potential drawbacks. The final report should highlight why this trend is gaining momentum and its potential impact on the audience.""",
+    expected_output="A report detailing the key points of the trend, including its appeal to social media audiences, its market potential, and possible risks.",
     tools=[tool],
     agent=researcher
 )
 
-# Then define the write task, making sure to use the correct context
+# Task to write an engaging article for social media
 write_task = Task(
-    description="""Compose an insightful article based on the research_task results. Focus on the latest trends and how it's impacting the industry. This article should be in a {style} style, and {length} length adapted for {platform} platform.""",
-    expected_output="A 4 paragraph article following the {style} style, and {length} length [keep in mind short means 5 lines] adapted for {platform} platform formatted as markdown.",
+    description="""Based on the results from the research_task, craft an engaging post highlighting the current trend. The post should be tailored to resonate with your audience and be written in a {style} style and {length} length, specifically adapted for the {platform} platform.""",
+    expected_output="A social media post formatted in markdown with {style} style, {length} length (short means 5 lines..), focusing on the trend's relevance and engaging the target audience on the {platform} platform.",
     agent=writer,
     async_execution=False
 )
 
-# Then define the Design task
+
+# Task for generating a visual prompt
 design_task = Task(
-    description="""Craft a prompt to genarte a visually appealing image in the {style} style to accompany the article. The image should capture the essence of the article about {topic} and be suitable for {platform} platform.""",
-    expected_output="A really short prompt to generate visually appealing image that captures the essence of the article and is suitable for {platform} platform. Don't include any text exept the prompt.",
+    description="""Create a prompt for generating a visually striking image in {style} that complements the article. The image should effectively convey the theme of the trend and be optimized for the {platform} platform, aligning with the content’s tone and message.""",
+    expected_output="A concise image prompt that captures the essence of the article and fits well with the {platform} platform’s style. Only provide the image prompt without any additional text.",
     agent=designer,
 )
