@@ -52,7 +52,7 @@ with col2:
             image_bytes = generate_image(image_prompt)
             if isinstance(image_bytes, str):
                 st.error(image_bytes)
-            st.image(image_bytes, use_column_width=True)
+            st.image(image_bytes, use_container_width=True)
     else:
       if results :
         st.header('Here is your post:')
